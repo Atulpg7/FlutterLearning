@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-    title: "Flutter App",
+    title: "Chatting App",
     home: HomePage(),
+    theme: ThemeData(primarySwatch: Colors.purple),
   ));
 }
 
@@ -12,42 +13,52 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Flutter App"),
+        title: Text("Chatting App"),
         centerTitle: false,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Align(
-          alignment: Alignment.center,
-          child: Container(
-            // width: MediaQuery.of(context).size.width,
-            // height: MediaQuery.of(context).size.height,
-            width: 200,
-            height: 500,
-            color: Colors.black,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly, //!Horizontally
-              crossAxisAlignment: CrossAxisAlignment.center, //!Vertically
-              children: <Widget>[
-                Container(
-                  width: 100,
-                  height: 100,
-                  color: Colors.red,
+      body: Container(),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            // DrawerHeader(
+            //   child: Text(
+            //     "Hi, there !",
+            //     style:
+            //         TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            //   ),
+            //   decoration: BoxDecoration(color: Colors.purpleAccent),
+            // ),
+            UserAccountsDrawerHeader(
+                accountName: Text("Atul Kumar"),
+                accountEmail: Text("atulpg7@gmail.com"),
+                currentAccountPicture: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      "https://images.unsplash.com/photo-1566753323558-f4e0952af115?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=922&q=80"),
+                )
+                // currentAccountPicture: Image.network(
+                //     "https://images.unsplash.com/photo-1566753323558-f4e0952af115?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=922&q=80"
+                //     ),
                 ),
-                Container(
-                  width: 100,
-                  height: 100,
-                  color: Colors.green,
-                ),
-                Container(
-                  width: 100,
-                  height: 100,
-                  color: Colors.yellow,
-                ),
-              ],
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text("Profile"),
+              subtitle: Text("Atul Kumar"),
+              trailing: Icon(Icons.edit),
             ),
-          ),
+            ListTile(
+              leading: Icon(Icons.email),
+              title: Text("Email"),
+              subtitle: Text("atul@gmail.com"),
+              trailing: Icon(Icons.send),
+            )
+          ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.edit),
+        // mini: true, //!For small the size
       ),
     );
   }
