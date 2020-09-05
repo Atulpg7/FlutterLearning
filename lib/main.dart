@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(HomeUI());
+  runApp(MaterialApp(
+    title: "Flutter App",
+    home: HomePage(),
+  ));
 }
 
-class HomeUI extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Flutter App"),
-          centerTitle: false,
-        ),
-        body: Container(
-          child: Center(child: Text("Flutter App")),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Flutter App"),
+        centerTitle: false,
+      ),
+      body: Container(
+        child: Center(child: Text("Hello there!")),
       ),
     );
   }
