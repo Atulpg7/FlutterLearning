@@ -8,27 +8,65 @@ void main() {
   ));
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  TextEditingController _nameController =
+      TextEditingController(); //! _ is for private
+
+  var myText = "Change Me";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[400],
       appBar: AppBar(
         title: Text("Chatting App"),
         centerTitle: false,
       ),
-      body: Container(),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Card(
+            child: Column(
+              children: <Widget>[
+                Image.asset(
+                  "assets/bg.jpg",
+                  fit: BoxFit.cover,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(myText,
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextField(
+                      controller: _nameController,
+                      keyboardType: TextInputType.text,
+                      // obscureText: true,//!for passwords
+                      decoration: InputDecoration(
+                        hintText: "Enter your name",
+                        labelText: "Name",
+                        border: OutlineInputBorder(),
+                      ),
+                    ))
+              ],
+            ),
+          ),
+        ),
+      ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            // DrawerHeader(
-            //   child: Text(
-            //     "Hi, there !",
-            //     style:
-            //         TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            //   ),
-            //   decoration: BoxDecoration(color: Colors.purpleAccent),
-            // ),
             UserAccountsDrawerHeader(
                 accountName: Text("Atul Kumar"),
                 accountEmail: Text("atulpg7@gmail.com"),
@@ -56,8 +94,11 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.edit),
+        onPressed: () {
+          myText = _nameController.text;
+          setState(() {}); //!When any change occured
+        },
+        child: Icon(Icons.refresh),
         // mini: true, //!For small the size
       ),
     );
